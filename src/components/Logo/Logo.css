@@ -1,0 +1,9 @@
+.Tilt {
+    background: linear-gradient(89deg, #fffa13 0%, #fffff2 18%, #fffef2 27%, #d3f1ff 45%, #30bdff 100%);
+}
+
+.Tilt-inner {
+    display: flex;
+    padding-top: 20px;
+    padding-left: 20px;
+}
