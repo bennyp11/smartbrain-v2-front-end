@@ -1,9 +1,36 @@
 .Tilt {
-    background: linear-gradient(89deg, #fffa13 0%, #fffff2 18%, #fffef2 27%, #d3f1ff 45%, #30bdff 100%);
+    background: linear-gradient(124deg, #cdcdcd, #cdcdcd, #cdcdcd, #d3d3d3, #c0c0c0, #A9a9a9, #92a0ad, #708090, #778899, #778899, #778899);
+  background-size: 190% 190%;
+  -webkit-animation: rainbow 15s ease infinite;
+  -z-animation: rainbow 15s ease infinite;
+  -o-animation: rainbow 15s ease infinite;
+    animation: rainbow 15s ease infinite;    
+    background-color: #fffff2;
 }
 
 .Tilt-inner {
     display: flex;
     padding-top: 20px;
     padding-left: 20px;
+}
+
+@-webkit-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-moz-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-o-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@keyframes rainbow { 
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
 }

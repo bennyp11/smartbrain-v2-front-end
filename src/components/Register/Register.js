@@ -1,4 +1,6 @@
 import React from 'react';
+import PasswordScorer from './PasswordScorer.js';
+import zxcvbn from 'zxcvbn';
 import './Register.css';
 
 const REGISTRATION_ENDPOINT = process.env.REACT_APP_REGISTRATION_ENDPOINT;
@@ -10,12 +12,14 @@ class Register extends React.Component {
         this.onNameChange = this.onNameChange.bind(this);
         this.onEmailChange = this.onEmailChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
+        //this.onScoreChange = this.onScoreChange.bind(this);
         this.onSubmitRegister = this.onSubmitRegister.bind(this);
 
         this.state = {
             name: '',
             email: '',
-            password: ''
+            password: '',
+            score: ''
         }
     }
     onNameChange = (e) => {
@@ -28,9 +32,19 @@ class Register extends React.Component {
 
     onPasswordChange = (e) => {
         this.setState({password: e.target.value});
+        let currentScore = zxcvbn(e.target.value).score;
+        this.setState({score: currentScore});
+        console.log(this.state.score);
     }
 
+    //onScoreChange = (e) => {
+    //    this.setState({score: e.target.value});
+    //}
+
     onSubmitRegister = () => {
+        if (this.state.score <= 2){
+            alert('Please make your password stronger');
+        } else {
         fetch(REGISTRATION_ENDPOINT, {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
@@ -48,7 +62,7 @@ class Register extends React.Component {
             }
         })
         .catch(err => 'REGISTRATION ERROR');
-    }
+    }}
 
     render(){
         return(
@@ -66,8 +80,13 @@ class Register extends React.Component {
                     <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address" onChange={this.onEmailChange}/>
                 </div>
                 <div className="mv3">
+                <div className="pw-widget-container">
+                    <div className="strength-container">
+                    <PasswordScorer score={this.state.score} />
+                    </div>
                     <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
                     <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password" onChange={this.onPasswordChange}/>
+                </div>
                 </div>
             </fieldset>
                 <div className="mv3">

@@ -6,6 +6,7 @@ import Rank from './components/Rank/Rank.js';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition.js';
 import SignIn from './components/SignIn/SignIn.js';
 import Register from './components/Register/Register.js';
+import Footer from './components/Footer/Footer.js';
 import './App.css';
 
 const IMAGE_ENDPOINT = process.env.REACT_APP_IMAGE_ENDPOINT;
@@ -110,7 +111,6 @@ class App extends Component {
       <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
         { route === 'home' 
         ? <div>
-            <Logo />
             <Rank name={this.state.user.name} entries={this.state.user.entries}/>
             <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
             <FaceRecognition box={box} imageUrl={imageUrl} />
@@ -120,6 +120,7 @@ class App extends Component {
           : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
           )
         }
+      <Footer />
       </div>
     );
   }
